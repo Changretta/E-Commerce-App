@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import HomePage from './pages/homepage/homepage.component';
 import {Route, Switch , Redirect} from 'react-router-dom';
@@ -18,15 +18,17 @@ import {selectCurrentUser} from './redux/user/user.selectors';
 
 
 
-class App extends React.Component{
+const App = ({checkUserSession , currentUser}) => {
+  useEffect(() => { 
+    checkUserSession()
+})
   
-  
-unsubscribeFromAuth = null;
+// unsubscribeFromAuth = null;
 
-  componentDidMount(){
+  // componentDidMount(){
 
-    const {checkUserSession} = this.props;
-    checkUserSession();
+  //   // const {checkUserSession} = this.props;
+  //   checkUserSession();
     // const {setCurrentUser} =this.props; 
 
     // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -46,14 +48,13 @@ unsubscribeFromAuth = null;
       // console.log(user);
     // });
 
-  }
+  
 
-  componentWillUnmount(){
-    this.unsubscribeFromAuth();
-  }
+  // componentWillUnmount(){
+  //   this.unsubscribeFromAuth();
+  // }
   
   
-  render(){
   return (<div>
             <Header/>
             <Switch>
@@ -66,7 +67,7 @@ unsubscribeFromAuth = null;
   
           </div>
   );
-}
+
 }
 
 
